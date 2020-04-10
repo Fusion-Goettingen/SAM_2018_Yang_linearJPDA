@@ -82,7 +82,7 @@ for t = 2:nr_timesteps
 
     
     for i = 1:size(gt,1)
-        if i~=1 || t< nr_timesteps%-20 % target 1 is terminated
+
         gt(i,1:2,t) = gt(i,1:2,t-1)+velo(:,t,i)';
         gt(i,3,t)=alpha(i,t);
         gt(i,4:5,t) = gt(i,4:5,t-1);
@@ -93,7 +93,6 @@ for t = 2:nr_timesteps
             temp = [temp gt(i,1:2,t)' + rot(gt(i,3,t))*diag(gt(i,4:5,t))*h(:,j)+mvnrnd([0;0],R)'];
         end
         
-        end
 
         if ~isempty(temp)
             xmax(t) = max(temp(1,:));
